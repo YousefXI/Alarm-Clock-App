@@ -1,4 +1,5 @@
-const selectMenu = document.querySelectorAll("select");
+const selectMenu = document.querySelectorAll("select"),
+   currentTime = document.querySelector("h1");
 
 for (let i = 12; i > 0; i--) {
    i = i < 10 ? "0" + i : i;
@@ -17,3 +18,25 @@ for (let i = 2; i > 0; i--) {
    let option = `<option value="${ampm}">${ampm}</option>`;
    selectMenu[2].firstElementChild.insertAdjacentHTML("afterend", option);
 }
+
+setInterval(() => {
+   //getting hours, mins, secs
+   let date = new Date(),
+      h = date.getHours(),
+      m = date.getMinutes(),
+      s = date.getSeconds(),
+      ampm = "AM";
+
+   if (h >= 12) {
+      h = h - 12;
+      ampm = "PM";
+   }
+
+   h = h == 0 ? (h = 12) : h;
+   //adding 0 before hour, min, sec
+   h = h < 10 ? "0" + h : h;
+   m = m < 10 ? "0" + m : m;
+   s = s < 10 ? "0" + s : s;
+
+   currentTime.innerText = `${h}:${m}:${s} ${ampm}`;
+}, 1000);
