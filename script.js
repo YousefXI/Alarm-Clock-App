@@ -3,6 +3,8 @@ const selectMenu = document.querySelectorAll("select"),
    currentTime = document.querySelector("h1"),
    setAlarmBtn = document.querySelector("button");
 
+let alarmTime;
+
 for (let i = 12; i > 0; i--) {
    i = i < 10 ? "0" + i : i;
    let option = `<option value="${i}">${i}</option>`;
@@ -39,8 +41,11 @@ setInterval(() => {
    h = h < 10 ? "0" + h : h;
    m = m < 10 ? "0" + m : m;
    s = s < 10 ? "0" + s : s;
-
    currentTime.innerText = `${h}:${m}:${s} ${ampm}`;
+
+   if (alarmTime == `${h}:${m}:${s} ${ampm}`) {
+      console.log("Alarm ringing...");
+   }
 }, 1000);
 
 function setAlarm() {
@@ -53,8 +58,9 @@ function setAlarm() {
    ) {
       return alert("Please select a valid time to set the alarm");
    }
+   alarmTime = time;
    content.classList.add("disable");
-   console.log(time);
+   setAlarmBtn.innerText = "Clear Alarm";
 }
 
 setAlarmBtn.addEventListener("click", setAlarm);
