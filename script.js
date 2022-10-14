@@ -5,7 +5,7 @@ const currentTime = document.querySelector("h1"),
 
 let alarmTime,
    isAlarmSet,
-   ringtone = new Audio("./files/ringtone.mp3");
+   ringtone = new Audio("ringtone.mp3");
 
 for (let i = 12; i > 0; i--) {
    i = i < 10 ? `0${i}` : i;
